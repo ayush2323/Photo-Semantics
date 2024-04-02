@@ -1,18 +1,21 @@
 from PIL import Image
+
 from transformers import pipeline
 import streamlit as st
 
-@st.cache_resource()
-def load_model_pipelines(task, model_path):
-    model = pipeline(task, model=model_path)
-    return model
+model = pipeline('image-to-text', model="Salesforce/blip-image-captioning-large")
+
+# @st.cache_resource()
+# def load_model_pipelines(task, model_path):
+#     model = pipeline(task, model=model_path)
+#     return model
 
 
-st.title("Photo Semantic Finder")
+# st.title("Photo Semantic Finder")
 
-model_path = "./Models/models--Salesforce--blip-image-captioning-large/snapshots/2227ac38c9f16105cb0412e7cab4759978a8fd90"
+# model_path = "./Models/models--Salesforce--blip-image-captioning-large/snapshots/2227ac38c9f16105cb0412e7cab4759978a8fd90"
 
-model = load_model_pipelines("image-to-text", model_path)
+# model = load_model_pipelines("image-to-text", model_path)
 
 
 uploaded_image = st.file_uploader("Choose a photo", type=["png", "jpg", "jpeg"])
